@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.  
 
 class Alumnos(models.Model):
-	nombre=models.CharField(max_length=30)
+    nombre=models.CharField(max_length=30)
     correo=models.EmailField(max_length=256)
     telefono=models.IntegerField()
     vigencia=models.BooleanField(Default=True)
@@ -16,7 +16,7 @@ class Profesores(models.Model):
 class Autos(models.Model):
     marca=models.CharField(max_length=30)
     modelo=models.CharField(max_length=30)
-    año=models.IntegerField()
+    patente=models.CharField(max_length=30)
 
 class Horario(models.Model):
     tipoHorario=models.CharField(max_length=10)
@@ -29,29 +29,12 @@ class bloqueHorario(models.Model):
     disponibilidad=models.BooleanField(Default=True)
 
 class Clases_Teoricas(models.Model):
+    tema_clase=models.CharField(max_length=30)
+
 
 class Clases_Practicas(models.Model):
+    tema_clase=models.CharField(max_length=30)
 
 
-class Grupo(models.Model):
-    nombre=models.CharField(max_length=30)
-    proyecto=models.OneToOneField(Proyecto,on_delete=models.CASCADE)
 
-
-class Estudiante(models.Model):
-    nombre=models.CharField(max_length=30)
-    correo=models.EmailField(max_length=256)
-    numero=models.IntegerField()
-    grupo=models.ForeignKey(Grupo,on_delete=models.CASCADE)
-
-
-class Desafio(models.Model):
-    titulo=models.CharField(max_length=30)
-    descripcion=models.CharField(max_length=512)
-    fecha=models.DateField()
-
-
-class DesafiosEstudiantes(models.Model):
-    estudiante=models.ForeignKey(Estudiante,on_delete=models.CASCADE)
-    desafio=models.ForeignKey(Desafio,on_delete=models.CASCADE)
-    fueEntregado=models.BooleanField(default=False)
+ 
